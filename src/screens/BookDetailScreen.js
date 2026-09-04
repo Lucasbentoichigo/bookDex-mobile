@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Header from '../components/Header';
 import CategoryBadge from '../components/CategoryBadge';
@@ -34,9 +34,13 @@ export default function BookDetailScreen({ route, navigation }) {
       
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.card}>
-          <View style={styles.iconContainer}>
-            <MaterialCommunityIcons name="book-open-page-variant" size={64} color="#eff6ff" />
-          </View>
+          {book.coverUrl ? (
+            <Image source={{ uri: book.coverUrl }} style={styles.coverImage} />
+          ) : (
+            <View style={styles.iconContainer}>
+              <MaterialCommunityIcons name="book-open-page-variant" size={64} color="#eff6ff" />
+            </View>
+          )}
 
           <Text style={styles.title}>{book.title}</Text>
           <Text style={styles.author}>{book.author}</Text>
@@ -146,6 +150,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 24,
   },
+  coverImage: {
+    alignSelf: 'center',
+    width: 150,
+    height: 210,
+    borderRadius: 8,
+    resizeMode: 'cover',
+    marginBottom: 24,
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -235,7 +247,7 @@ const styles = StyleSheet.create({
   actionButton: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#eff6ff',
+    backgroundColor: '#5b9ef5',
     padding: 16,
     borderRadius: 8,
     justifyContent: 'center',

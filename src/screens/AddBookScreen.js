@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Alert } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, StyleSheet, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 import Header from '../components/Header';
 import { saveBook } from '../services/storageService';
 import { CATEGORIES, STATUS_OPTIONS } from '../services/categoryService';
@@ -12,6 +13,26 @@ export default function AddBookScreen({ navigation }) {
   const [selectedStatus, setSelectedStatus] = useState(STATUS_OPTIONS[0].value);
   const [totalPages, setTotalPages] = useState('');
   const [description, setDescription] = useState('');
+  const [coverUrl, setCoverUrl] = useState(null);
+
+  const handlePickImage = async () => {
+    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!permission.granted) {
+      Alert.alert('Permissão necessária', 'Permita o acesso às fotos para adicionar uma capa.');
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [3, 4],
+      quality: 0.8,
+    });
+
+    if (!result.canceled && result.assets?.[0]?.uri) {
+      setCoverUrl(result.assets[0].uri);
+    }
+  };
 
   const handleSave = async () => {
     if (!title.trim() || !author.trim()) {
@@ -28,6 +49,7 @@ export default function AddBookScreen({ navigation }) {
       currentPage: selectedStatus === 'read' ? parseInt(totalPages) || 0 : 0,
       description: description.trim(),
       rating: 0,
+      coverUrl,
     };
 
     const savedBook = await saveBook(book);
@@ -46,6 +68,21 @@ export default function AddBookScreen({ navigation }) {
       
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.form}>
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Capa do livro</Text>
+            <TouchableOpacity style={styles.coverPicker} onPress={handlePickImage}>
+              {coverUrl ? (
+                <Image source={{ uri: coverUrl }} style={styles.coverPreview} />
+              ) : (
+                <View style={styles.coverPlaceholder}>
+                  <MaterialCommunityIcons name="camera-plus-outline" size={30} color="#666666" />
+                  <Text style={styles.coverPlaceholderText}>Adicionar foto da capa</Text>
+                </View>
+              )}
+            </TouchableOpacity>
+            {coverUrl ? <Text style={styles.changeCoverText}>Toque na imagem para trocar</Text> : null}
+          </View>
+
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Título *</Text>
             <View style={styles.inputContainer}>
@@ -181,7 +218,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333333',
+    color: '#264734',
     marginBottom: 8,
   },
   inputContainer: {
@@ -193,11 +230,42 @@ const styles = StyleSheet.create({
     borderColor: '#DDDDDD',
     paddingHorizontal: 16,
   },
+  coverPicker: {
+    height: 190,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#DDDDDD',
+    borderStyle: 'dashed',
+    backgroundColor: '#FFFFFF',
+    overflow: 'hidden',
+  },
+  coverPreview: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  coverPlaceholder: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  coverPlaceholderText: {
+    color: '#666666',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  changeCoverText: {
+    color: '#666666',
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 6,
+  },
   input: {
     flex: 1,
     padding: 16,
     fontSize: 16,
-    color: '#333333',
+    color: '#c0b4b4',
   },
   textArea: {
     height: 100,
@@ -213,12 +281,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 999,
     borderWidth: 2,
-    borderColor: '#DDDDDD',
+    borderColor: '#2155b6',
     marginRight: 8,
     marginBottom: 8,
   },
   optionButtonSelected: {
-    backgroundColor: '#eff6ff',
+    backgroundColor: '#424efa4f',
     borderColor: '#eff6ff',
   },
   optionText: {
@@ -227,17 +295,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   optionTextSelected: {
-    color: '#FFFFFF',
+    color: '#160b77',
   },
   saveButton: {
-    backgroundColor: '#eff6ff',
+    backgroundColor: '#5b9ef5',
     padding: 16,
     borderRadius: 8,
     alignItems: 'center',
     marginTop: 16,
   },
   saveButtonText: {
-    color: '#FFFFFF',
+    color: '#06076e',
     fontSize: 16,
     fontWeight: 'bold',
   },

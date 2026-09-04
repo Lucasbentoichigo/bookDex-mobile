@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333333',
+    color: '#264734',
     marginBottom: 8,
   },
   inputContainer: {
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     fontSize: 16,
-    color: '#333333',
+    color: '#c0b4b4',
   },
   textArea: {
     height: 100,
@@ -286,12 +286,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 999,
     borderWidth: 2,
-    borderColor: '#DDDDDD',
+    borderColor: '#2155b6',
     marginRight: 8,
     marginBottom: 8,
   },
   optionButtonSelected: {
-    backgroundColor: '#eff6ff',
+    backgroundColor: '#424efa4f',
     borderColor: '#eff6ff',
   },
   optionText: {
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   optionTextSelected: {
-    color: '#FFFFFF',
+    color: '#160b77',
   },
   ratingContainer: {
     flexDirection: 'row',
@@ -310,14 +310,14 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   saveButton: {
-    backgroundColor: '#eff6ff',
+    backgroundColor: '#5b9ef5',
     padding: 16,
     borderRadius: 8,
     alignItems: 'center',
     marginTop: 16,
   },
   saveButtonText: {
-    color: '#FFFFFF',
+    color: '#06076e',
     fontSize: 16,
     fontWeight: 'bold',
   },

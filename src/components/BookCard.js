@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   author: {
     fontSize: 14,
-    color: '#64748B',
+    color: '#472211',
     marginBottom: 4,
   },
   badges: {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   progressText: {
     fontSize: 12,
-    color: '#64748B',
+    color: '#18263a',
     marginTop: 4,
   },
   actions: {
