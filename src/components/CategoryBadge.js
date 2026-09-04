@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { colors, spacing, borderRadius } from '../constants/colors';
 import { getCategoryById, getStatusByValue } from '../services/categoryService';
 
 export default function CategoryBadge({ category, status, size = 'medium' }) {
@@ -9,7 +8,7 @@ export default function CategoryBadge({ category, status, size = 'medium' }) {
   
   const data = status ? statusData : categoryData;
   const label = status ? statusData?.label : category;
-  const backgroundColor = data?.color || colors.textLight;
+  const backgroundColor = data?.color || '#999999';
 
   const sizes = {
     small: { paddingVertical: 4, paddingHorizontal: 8, fontSize: 10 },
@@ -33,13 +32,13 @@ export default function CategoryBadge({ category, status, size = 'medium' }) {
 
 const styles = StyleSheet.create({
   badge: {
-    borderRadius: borderRadius.full,
-    marginRight: spacing.xs,
+    borderRadius: 999,
+    marginRight: 4,
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    color: colors.white,
+    color: '#FFFFFF',
     fontWeight: '600',
     textTransform: 'uppercase',
   },

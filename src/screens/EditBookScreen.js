@@ -4,7 +4,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Header from '../components/Header';
 import { updateBook, getBookById } from '../services/storageService';
 import { CATEGORIES, STATUS_OPTIONS } from '../services/categoryService';
-import { colors, spacing, borderRadius } from '../constants/colors';
 
 export default function EditBookScreen({ route, navigation }) {
   const { book } = route.params;
@@ -70,7 +69,7 @@ export default function EditBookScreen({ route, navigation }) {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary} />
+        <ActivityIndicator size="large" color="#eff6ff" />
       </View>
     );
   }
@@ -84,13 +83,13 @@ export default function EditBookScreen({ route, navigation }) {
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Título *</Text>
             <View style={styles.inputContainer}>
-              <MaterialCommunityIcons name="book" size={20} color={colors.textSecondary} />
+              <MaterialCommunityIcons name="book" size={20} color="#666666" />
               <TextInput
                 style={styles.input}
                 value={title}
                 onChangeText={setTitle}
                 placeholder="Digite o título do livro"
-                placeholderTextColor={colors.textLight}
+                placeholderTextColor="#999999"
               />
             </View>
           </View>
@@ -98,13 +97,13 @@ export default function EditBookScreen({ route, navigation }) {
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Autor *</Text>
             <View style={styles.inputContainer}>
-              <MaterialCommunityIcons name="account" size={20} color={colors.textSecondary} />
+              <MaterialCommunityIcons name="account" size={20} color="#666666" />
               <TextInput
                 style={styles.input}
                 value={author}
                 onChangeText={setAuthor}
                 placeholder="Digite o nome do autor"
-                placeholderTextColor={colors.textLight}
+                placeholderTextColor="#999999"
               />
             </View>
           </View>
@@ -164,13 +163,13 @@ export default function EditBookScreen({ route, navigation }) {
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Total de Páginas</Text>
             <View style={styles.inputContainer}>
-              <MaterialCommunityIcons name="pages" size={20} color={colors.textSecondary} />
+              <MaterialCommunityIcons name="pages" size={20} color="#666666" />
               <TextInput
                 style={styles.input}
                 value={totalPages}
                 onChangeText={setTotalPages}
                 placeholder="Quantas páginas tem o livro?"
-                placeholderTextColor={colors.textLight}
+                placeholderTextColor="#999999"
                 keyboardType="numeric"
               />
             </View>
@@ -179,13 +178,13 @@ export default function EditBookScreen({ route, navigation }) {
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Página Atual</Text>
             <View style={styles.inputContainer}>
-              <MaterialCommunityIcons name="page-next" size={20} color={colors.textSecondary} />
+              <MaterialCommunityIcons name="page-next" size={20} color="#666666" />
               <TextInput
                 style={styles.input}
                 value={currentPage}
                 onChangeText={setCurrentPage}
                 placeholder="Em qual página você está?"
-                placeholderTextColor={colors.textLight}
+                placeholderTextColor="#999999"
                 keyboardType="numeric"
               />
             </View>
@@ -203,7 +202,7 @@ export default function EditBookScreen({ route, navigation }) {
                   <MaterialCommunityIcons
                     name={star <= rating ? 'star' : 'star-outline'}
                     size={32}
-                    color={star <= rating ? colors.accent : colors.border}
+                    color={star <= rating ? '#F39C12' : '#DDDDDD'}
                   />
                 </TouchableOpacity>
               ))}
@@ -217,7 +216,7 @@ export default function EditBookScreen({ route, navigation }) {
               value={description}
               onChangeText={setDescription}
               placeholder="Adicione uma descrição (opcional)"
-              placeholderTextColor={colors.textLight}
+              placeholderTextColor="#999999"
               multiline
               numberOfLines={4}
               textAlignVertical="top"
@@ -236,7 +235,7 @@ export default function EditBookScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: '#F5F5F5',
   },
   loadingContainer: {
     flex: 1,
@@ -247,78 +246,78 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   form: {
-    padding: spacing.md,
+    padding: 16,
   },
   inputGroup: {
-    marginBottom: spacing.lg,
+    marginBottom: 24,
   },
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.text,
-    marginBottom: spacing.sm,
+    color: '#333333',
+    marginBottom: 8,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
-    borderRadius: borderRadius.md,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
     borderWidth: 1,
-    borderColor: colors.border,
-    paddingHorizontal: spacing.md,
+    borderColor: '#DDDDDD',
+    paddingHorizontal: 16,
   },
   input: {
     flex: 1,
-    padding: spacing.md,
+    padding: 16,
     fontSize: 16,
-    color: colors.text,
+    color: '#333333',
   },
   textArea: {
     height: 100,
-    paddingTop: spacing.md,
+    paddingTop: 16,
   },
   optionsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.sm,
+    gap: 8,
   },
   optionButton: {
-    paddingVertical: spacing.sm,
-    paddingHorizontal: spacing.md,
-    borderRadius: borderRadius.full,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 999,
     borderWidth: 2,
-    borderColor: colors.border,
-    marginRight: spacing.sm,
-    marginBottom: spacing.sm,
+    borderColor: '#DDDDDD',
+    marginRight: 8,
+    marginBottom: 8,
   },
   optionButtonSelected: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: '#eff6ff',
+    borderColor: '#eff6ff',
   },
   optionText: {
     fontSize: 12,
-    color: colors.textSecondary,
+    color: '#666666',
     fontWeight: '600',
   },
   optionTextSelected: {
-    color: colors.white,
+    color: '#FFFFFF',
   },
   ratingContainer: {
     flexDirection: 'row',
-    gap: spacing.sm,
+    gap: 8,
   },
   starButton: {
-    padding: spacing.xs,
+    padding: 4,
   },
   saveButton: {
-    backgroundColor: colors.primary,
-    padding: spacing.md,
-    borderRadius: borderRadius.md,
+    backgroundColor: '#eff6ff',
+    padding: 16,
+    borderRadius: 8,
     alignItems: 'center',
-    marginTop: spacing.md,
+    marginTop: 16,
   },
   saveButtonText: {
-    color: colors.white,
+    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
   },

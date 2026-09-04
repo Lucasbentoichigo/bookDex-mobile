@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { colors, spacing, borderRadius } from '../constants/colors';
 import CategoryBadge from './CategoryBadge';
 import ProgressBar from './ProgressBar';
 
@@ -13,9 +12,13 @@ export default function BookCard({ book, onPress, onEdit, onDelete }) {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
       <View style={styles.content}>
-        <View style={styles.iconContainer}>
-          <MaterialCommunityIcons name="book-open" size={32} color={colors.primary} />
-        </View>
+        {book.coverUrl ? (
+          <Image source={{ uri: book.coverUrl }} style={styles.cover} />
+        ) : (
+          <View style={styles.cover}>
+            <MaterialCommunityIcons name="book-open-variant" size={30} color="#FFFFFF" />
+          </View>
+        )}
         
         <View style={styles.info}>
           <Text style={styles.title} numberOfLines={1}>{book.title}</Text>
@@ -38,10 +41,10 @@ export default function BookCard({ book, onPress, onEdit, onDelete }) {
 
       <View style={styles.actions}>
         <TouchableOpacity style={styles.actionButton} onPress={onEdit}>
-          <MaterialCommunityIcons name="pencil" size={20} color={colors.info} />
+          <MaterialCommunityIcons name="pencil" size={20} color="#3498DB" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton} onPress={onDelete}>
-          <MaterialCommunityIcons name="delete-outline" size={20} color={colors.error} />
+          <MaterialCommunityIcons name="delete-outline" size={20} color="#E74C3C" />
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
@@ -50,14 +53,14 @@ export default function BookCard({ book, onPress, onEdit, onDelete }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.surface,
-    borderRadius: borderRadius.lg,
-    padding: spacing.md,
-    marginBottom: spacing.sm,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    padding: 14,
+    marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
     elevation: 2,
-    shadowColor: colors.shadow,
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -67,46 +70,46 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  iconContainer: {
-    width: 50,
-    height: 50,
-    borderRadius: borderRadius.md,
-    backgroundColor: colors.background,
+  cover: {
+    width: 54,
+    height: 72,
+    borderRadius: 5,
+    backgroundColor: '#0F766E',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: spacing.md,
+    marginRight: 13,
   },
   info: {
     flex: 1,
   },
   title: {
-    fontSize: 16,
     fontWeight: 'bold',
-    color: colors.text,
-    marginBottom: 2,
+    color: '#0F172A',
+    fontSize: 16,
+    marginBottom: 3,
   },
   author: {
     fontSize: 14,
-    color: colors.textSecondary,
-    marginBottom: spacing.xs,
+    color: '#64748B',
+    marginBottom: 4,
   },
   badges: {
     flexDirection: 'row',
-    marginTop: spacing.xs,
+    marginTop: 4,
   },
   progressContainer: {
-    marginTop: spacing.sm,
+    marginTop: 8,
   },
   progressText: {
     fontSize: 12,
-    color: colors.textSecondary,
+    color: '#64748B',
     marginTop: 4,
   },
   actions: {
     flexDirection: 'row',
-    marginLeft: spacing.sm,
+    marginLeft: 8,
   },
   actionButton: {
-    padding: spacing.sm,
+    padding: 8,
   },
 });

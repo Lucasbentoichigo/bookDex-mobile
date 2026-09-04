@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { colors, spacing } from '../constants/colors';
 
 export default function Header({ title, subtitle }) {
   return (
@@ -13,21 +12,19 @@ export default function Header({ title, subtitle }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
-    padding: spacing.lg,
-    paddingTop: spacing.xl,
-    borderBottomLeftRadius: borderRadius.lg,
-    borderBottomRightRadius: borderRadius.lg,
+    backgroundColor: '#0F172A',
+    paddingHorizontal: 20,
+    paddingTop: 48,
+    paddingBottom: 22,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: colors.white,
+    color: '#FFFFFF',
   },
   subtitle: {
     fontSize: 14,
-    color: colors.white,
-    opacity: 0.9,
-    marginTop: spacing.xs,
+    color: '#CBD5E1',
+    marginTop: 6,
   },
 });

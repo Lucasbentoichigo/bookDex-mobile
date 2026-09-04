@@ -7,7 +7,6 @@ import ProgressBar from '../components/ProgressBar';
 import { getStatusByValue } from '../services/categoryService';
 import { formatDate, formatPercentage } from '../utils/formatters';
 import { calculateReadingProgress } from '../utils/missionUtils';
-import { colors, spacing, borderRadius } from '../constants/colors';
 
 export default function BookDetailScreen({ route, navigation }) {
   const { book } = route.params;
@@ -22,7 +21,7 @@ export default function BookDetailScreen({ route, navigation }) {
             key={star}
             name={star <= rating ? 'star' : 'star-outline'}
             size={24}
-            color={star <= rating ? colors.accent : colors.border}
+            color={star <= rating ? '#F39C12' : '#DDDDDD'}
           />
         ))}
       </View>
@@ -36,7 +35,7 @@ export default function BookDetailScreen({ route, navigation }) {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.card}>
           <View style={styles.iconContainer}>
-            <MaterialCommunityIcons name="book-open-page-variant" size={64} color={colors.primary} />
+            <MaterialCommunityIcons name="book-open-page-variant" size={64} color="#eff6ff" />
           </View>
 
           <Text style={styles.title}>{book.title}</Text>
@@ -81,12 +80,12 @@ export default function BookDetailScreen({ route, navigation }) {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Informações</Text>
             <View style={styles.infoRow}>
-              <MaterialCommunityIcons name="calendar" size={20} color={colors.textSecondary} />
+              <MaterialCommunityIcons name="calendar" size={20} color="#666666" />
               <Text style={styles.infoText}>Adicionado em: {formatDate(book.createdAt)}</Text>
             </View>
             {book.updatedAt && (
               <View style={styles.infoRow}>
-                <MaterialCommunityIcons name="pencil" size={20} color={colors.textSecondary} />
+                <MaterialCommunityIcons name="pencil" size={20} color="#666666" />
                 <Text style={styles.infoText}>Atualizado em: {formatDate(book.updatedAt)}</Text>
               </View>
             )}
@@ -98,7 +97,7 @@ export default function BookDetailScreen({ route, navigation }) {
             style={styles.actionButton}
             onPress={() => navigation.navigate('EditBook', { book })}
           >
-            <MaterialCommunityIcons name="pencil" size={20} color={colors.white} />
+            <MaterialCommunityIcons name="pencil" size={20} color="#FFFFFF" />
             <Text style={styles.actionButtonText}>Editar</Text>
           </TouchableOpacity>
           
@@ -109,7 +108,7 @@ export default function BookDetailScreen({ route, navigation }) {
               // A exclusão será tratada na tela anterior
             }}
           >
-            <MaterialCommunityIcons name="delete" size={20} color={colors.white} />
+            <MaterialCommunityIcons name="delete" size={20} color="#FFFFFF" />
             <Text style={styles.actionButtonText}>Excluir</Text>
           </TouchableOpacity>
         </View>
@@ -121,18 +120,18 @@ export default function BookDetailScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: '#F5F5F5',
   },
   content: {
     flex: 1,
   },
   card: {
-    backgroundColor: colors.surface,
-    margin: spacing.md,
-    padding: spacing.lg,
-    borderRadius: borderRadius.lg,
+    backgroundColor: '#FFFFFF',
+    margin: 16,
+    padding: 24,
+    borderRadius: 12,
     elevation: 3,
-    shadowColor: colors.shadow,
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -142,112 +141,112 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: colors.background,
+    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: spacing.lg,
+    marginBottom: 24,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: colors.text,
+    color: '#333333',
     textAlign: 'center',
-    marginBottom: spacing.sm,
+    marginBottom: 8,
   },
   author: {
     fontSize: 16,
-    color: colors.textSecondary,
+    color: '#666666',
     textAlign: 'center',
-    marginBottom: spacing.md,
+    marginBottom: 16,
   },
   badgesContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: spacing.lg,
+    marginBottom: 24,
   },
   badge: {
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 20,
-    marginLeft: spacing.sm,
+    marginLeft: 8,
   },
   badgeText: {
-    color: colors.white,
+    color: '#FFFFFF',
     fontWeight: '600',
     fontSize: 12,
   },
   progressSection: {
-    marginBottom: spacing.lg,
+    marginBottom: 24,
   },
   progressHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: spacing.sm,
+    marginBottom: 8,
   },
   progressLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.text,
+    color: '#333333',
   },
   progressValue: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: colors.primary,
+    color: '#eff6ff',
   },
   pagesText: {
     fontSize: 12,
-    color: colors.textSecondary,
+    color: '#666666',
     textAlign: 'center',
-    marginTop: spacing.sm,
+    marginTop: 8,
   },
   section: {
-    marginBottom: spacing.lg,
+    marginBottom: 24,
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: colors.text,
-    marginBottom: spacing.sm,
+    color: '#333333',
+    marginBottom: 8,
   },
   starsContainer: {
     flexDirection: 'row',
-    gap: spacing.xs,
+    gap: 4,
   },
   description: {
     fontSize: 14,
-    color: colors.textSecondary,
+    color: '#666666',
     lineHeight: 20,
   },
   infoRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: spacing.sm,
+    marginBottom: 8,
   },
   infoText: {
     fontSize: 14,
-    color: colors.textSecondary,
-    marginLeft: spacing.sm,
+    color: '#666666',
+    marginLeft: 8,
   },
   actions: {
     flexDirection: 'row',
-    padding: spacing.md,
-    gap: spacing.md,
+    padding: 16,
+    gap: 16,
   },
   actionButton: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: colors.primary,
-    padding: spacing.md,
-    borderRadius: borderRadius.md,
+    backgroundColor: '#eff6ff',
+    padding: 16,
+    borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: spacing.sm,
+    gap: 8,
   },
   deleteButton: {
-    backgroundColor: colors.error,
+    backgroundColor: '#E74C3C',
   },
   actionButtonText: {
-    color: colors.white,
+    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
   },
